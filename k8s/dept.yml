@@ -8,15 +8,6 @@ spec:
     matchLabels:
       app: static-dept
   replicas: 2 # tells deployment to run 2 pods matching the template
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: size
-            operator: In
-            values:
-            - small
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -38,5 +29,14 @@ spec:
             cpu: 1
         ports:
           - containerPort: 80
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: size
+              operator: In
+              values:
+              - small
  
     

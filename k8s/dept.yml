@@ -35,10 +35,10 @@ spec:
             - weight: 1
               preference:
                 matchExpressions:
-                - key: size
+                - key: zone
                   operator: In
                   values:
-                  - small
+                  - ap-northeast-1a
 
  
     

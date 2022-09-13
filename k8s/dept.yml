@@ -4,6 +4,15 @@ metadata:
   name: static-deployment
   namespace: static-app-ns
 spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: size
+            operator: In
+            values:
+            - small
   selector:
     matchLabels:
       app: static-dept
@@ -29,14 +38,6 @@ spec:
             cpu: 1
         ports:
           - containerPort: 80
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: size
-            operator: In
-            values:
-            - small
+
  
     

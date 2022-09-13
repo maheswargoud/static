@@ -28,20 +28,19 @@
 #             memory: "256Mi"
 #             cpu: 1
 #         ports:
-#           - containerPort: 80
-#         affinity:
-#           nodeAffinity:
-#             preferredDuringSchedulingIgnoredDuringExecution:
-#             - weight: 1
-#               preference:
-#                 matchExpressions:
-#                 - key: topology.kubernetes.io/zone
-#                   operator: In
-#                   values:
-#                   - ap-northeast-1a
+#         - containerPort: 80
+#       affinity:
+#         nodeAffinity:
+#           preferredDuringSchedulingIgnoredDuringExecution:
+#           - weight: 1
+#             preference:
+#               matchExpressions:
+#               - key: zone
+#                 operator: In
+#                 values:
+#                 - ap-northeast-1a
 
- 
-    
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -72,17 +71,14 @@ spec:
             memory: "256Mi"
             cpu: 1
         ports:
-        - containerPort: 80
+          - containerPort: 80
       affinity:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
           - weight: 1
             preference:
               matchExpressions:
-              - key: zone
+              - key: topology.kubernetes.io/zone
                 operator: In
                 values:
                 - ap-northeast-1a
-
-
-

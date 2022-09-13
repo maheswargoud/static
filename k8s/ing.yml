@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: static-ing
+  namespace: static-app-ns
+spec:
+  rules:
+  - host: static.maheswargoud.xyz
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: static-svc
+            port: 
+              number: 80

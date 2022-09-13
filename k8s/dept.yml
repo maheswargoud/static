@@ -60,6 +60,16 @@ spec:
       labels:
         app: static-dept
     spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: topology.kubernetes.io/zone
+                operator: In
+                values:
+                - ap-northeast-1a
       containers:
       - name: static-image
         image: 101275806917.dkr.ecr.ap-northeast-1.amazonaws.com/static_application:number
@@ -72,13 +82,3 @@ spec:
             cpu: 1
         ports:
           - containerPort: 80
-      affinity:
-        nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-              - key: topology.kubernetes.io/zone
-                operator: In
-                values:
-                - ap-northeast-1a
